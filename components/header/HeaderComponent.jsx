@@ -65,10 +65,10 @@ const HeaderComponent = () => {
             About
           </Link>
           <Link href="/about" className="hidden md:block">
-            Projects
+            Skill
           </Link>
           <Link href="/about" className="hidden md:block">
-            Skill
+            Projects
           </Link>
           <Link href="/about" className="hidden md:block">
             Contact
