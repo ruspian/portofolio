@@ -26,7 +26,7 @@ const TerminalComponent = () => {
     {
       type: "code",
       language: "json",
-      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Web Development Expertise",\n    "Design Graphics",\n    "Frontend Development",\n    "Backend Development"\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian"\n}`,
+      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Web Developer",\n    "Design Graphics",\n    "Fullstack Developer",\n    "Tech Enthusiast"\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian",\n}`,
       delay: 500,
     },
     { type: "input", text: " ", delay: 1000 },
@@ -94,7 +94,7 @@ const TerminalComponent = () => {
   }, [lines]);
 
   return (
-    <div className="w-full sm:max-w-[600px] min-h-[350px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col">
+    <div className="w-full sm:max-w-[600px] max-h-[500px] min-h-[500px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col shadow-2xl">
       {/* Terminal Header */}
       <div className="h-7 bg-gray-200 rounded-t-lg flex items-center px-2.5 flex-shrink-0">
         <div className="flex space-x-2">
@@ -102,7 +102,9 @@ const TerminalComponent = () => {
           <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="mx-auto text-xs text-gray-800">Terminal</div>
+        <div className="mx-auto text-xs text-gray-800 font-bold">
+          pian -- -zsh -- 80x24
+        </div>
       </div>
 
       {/* Terminal Body */}
@@ -113,10 +115,10 @@ const TerminalComponent = () => {
         {lines.map((line) => {
           // Menentukan prompt berdasarkan apakah ini perintah pertama atau bukan
           const prompt = line.isInitial ? (
-            <span>root@ruspian ~ % </span>
+            <span>pian@web ~ % </span>
           ) : (
             <span>
-              root@ruspian{" "}
+              pian@web{" "}
               <span className="text-green-500 font-mono">MyPortofolio</span> %{" "}
             </span>
           );

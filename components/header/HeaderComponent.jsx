@@ -4,8 +4,8 @@ import React from "react";
 
 const HeaderComponent = () => {
   return (
-    <header className="bg-gray-800 p-4 border-b border-gray-700">
-      <div className="container mx-auto">
+    <header className="p-4">
+      <div className="mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Image src="/logo.png" alt="Logo" width={70} height={50} />
