@@ -9,23 +9,24 @@ const HeroComponent = () => {
     <main className="mx-auto">
       <div className="h-[550px] flex-col md:flex-row flex  px-10 gap-4 mt-10">
         <section className="mt-16 flex-1/2 items-start justify-start">
-          <p className="text-amber-500 text-lg mb-4">Hello Dude!</p>
+          <p className="text-amber-500 text-lg mb-4">Halo Sobat!</p>
 
           <h3 className="text-2xl md:text-4xl font-bold ">
-            I'm Ruspian Majid,
+            Saya Ruspian Majid,
           </h3>
           <h3 className="text-2xl md:text-4xl font-bold ">
-            a web developer driven by curiosity and passion.
+            seorang web developer yang bergerak atas dasar rasa ingin tahu dan
+            semangat.
           </h3>
 
           <p className="text-lg mt-4">
-            True understanding is forged through application, not mere study.
-            The path is to engage, learn, and create.
+            Pemahaman sejati lahir dari penerapan, bukan sekadar teori. Caranya
+            adalah dengan terlibat langsung, belajar, dan berkarya.
           </p>
 
           <Button color="gold" variant="outlined" className="mt-4" size="large">
             <FaFileDownload className="size-4" />
-            <Link href="#">Download My Resume</Link>
+            <Link href="#">Unduh Resume Saya</Link>
           </Button>
         </section>
 
