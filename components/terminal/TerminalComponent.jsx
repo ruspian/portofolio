@@ -19,7 +19,7 @@ const TerminalComponent = () => {
     {
       type: "code",
       language: "json",
-      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Web Developer",\n    "Design Graphics",\n    "Fullstack Developer",\n    "Tech Enthusiast"\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian",\n}`,
+      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Web Developer",\n    "Design Graphics",\n    "Fullstack Web Developer",\n    "Tech Enthusiast"\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian",\n}`,
       delay: 500,
     },
     { type: "input", text: " ", delay: 1000 },
