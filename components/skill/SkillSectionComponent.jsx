@@ -6,13 +6,13 @@ import {
   FaReact,
   FaNodeJs,
   FaPython,
-  FaBootstrap,
   FaDocker,
   FaGitAlt,
   FaNpm,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
+  SiPrisma,
   SiNextdotjs,
   SiExpress,
   SiPostgresql,
@@ -36,7 +36,7 @@ const skillsData = [
   { name: "Express.js", icon: <SiExpress />, color: "#000000" },
   { name: "Python", icon: <FaPython />, color: "#3776AB" },
   { name: "TailwindCSS", icon: <SiTailwindcss />, color: "#06B6D4" },
-  { name: "Bootstrap", icon: <FaBootstrap />, color: "#7952B3" },
+  { name: "Prisma", icon: <SiPrisma />, color: "#7952B3" },
   { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4479A1" },
   { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
   { name: "Docker", icon: <FaDocker />, color: "#2496ED" },
@@ -52,7 +52,7 @@ const SkillSectionComponent = () => {
       <h1 className="text-4xl font-bold text-amber-500 text-center">Skill</h1>
       <div className="border-[1px] border-slate-400 w-20 mx-auto my-2"></div>
 
-      <div className="flex flex-col gap-4 text-center justify-center">
+      <div className="flex flex-col gap-4 text-center justify-center mt-8">
         <h3>
           Berikut adalah beberapa teknologi dan tools yang menjadi andalan saya
           untuk mengubah ide menjadi produk digital yang fungsional dan menarik
