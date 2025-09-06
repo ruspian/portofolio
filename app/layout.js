@@ -1,8 +1,10 @@
-import { Outfit } from "next/font/google";
+import { Lato } from "next/font/google";
 import "./globals.css";
+import HeaderComponent from "@/components/header/HeaderComponent";
 
-const OutfitFont = Outfit({
+const lato = Lato({
   subsets: ["latin"],
+  weight: ["100", "300", "400", "700"],
 });
 
 export const metadata = {
@@ -13,7 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${OutfitFont.className} antialiased`}>{children}</body>
+      <body className={`${lato.className} antialiased`}>
+        <HeaderComponent />
+        {children}
+      </body>
     </html>
   );
 }
