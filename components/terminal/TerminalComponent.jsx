@@ -15,13 +15,6 @@ const TerminalComponent = () => {
 
   // Mendefinisikan seluruh urutan animasi
   const sequence = [
-    { type: "input", text: "cd MyPortofolio", delay: 800, isInitial: true },
-    { type: "input", text: "ls", delay: 1000 },
-    {
-      type: "output",
-      text: "aboutme.json",
-      delay: 1000,
-    },
     { type: "input", text: "cat aboutme.json", delay: 1200 },
     {
       type: "code",
@@ -94,7 +87,7 @@ const TerminalComponent = () => {
   }, [lines]);
 
   return (
-    <div className="w-full sm:max-w-[600px] max-h-[500px] min-h-[500px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col shadow-2xl">
+    <div className="w-full min-w-[500px]  min-h-[400px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col">
       {/* Terminal Header */}
       <div className="h-7 bg-gray-200 rounded-t-lg flex items-center px-2.5 flex-shrink-0">
         <div className="flex space-x-2">
