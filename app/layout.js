@@ -2,6 +2,7 @@ import { Lato, Fira_Mono } from "next/font/google";
 import "./globals.css";
 import HeaderComponent from "@/components/header/HeaderComponent";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import FooterComponent from "@/components/footer/FooterComponent";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${lato.className} ${fira.className} antialiased`}>
         <HeaderComponent />
         <AntdRegistry>{children}</AntdRegistry>
+        <FooterComponent />
       </body>
     </html>
   );

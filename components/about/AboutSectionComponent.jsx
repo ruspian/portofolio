@@ -7,7 +7,7 @@ const AboutSectionComponent = () => {
   return (
     <div className="mx-auto px-10 py-10 ">
       <h1 className="text-4xl font-bold text-amber-500 text-center">
-        About Me
+        Sedikit Tentang Saya
       </h1>
       <div className="border-[1px] border-slate-400 w-20 mx-auto my-2"></div>
 

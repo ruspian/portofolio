@@ -7,7 +7,7 @@ const ProjectSectionComponent = () => {
   return (
     <div className="mx-auto px-10 py-10 ">
       <h1 className="text-4xl font-bold text-amber-500 text-center">
-        Projects
+        Beberapa Hal Yang Saya Bangun
       </h1>
       <div className="border-[1px] border-slate-400 w-20 mx-auto my-2"></div>
 
@@ -24,14 +24,22 @@ const ProjectSectionComponent = () => {
           <ProjectCardComponent />
         </div>
 
-        <Button
+        <h3 className="px-4 mt-4">
+          Jelajahi semua proyek saya lainnya di
+          <Link href="/projects" className="text-amber-500">
+            {" "}
+            halaman ini
+          </Link>
+        </h3>
+
+        {/* <Button
           color="gold"
           variant="outlined"
           className="mt-4 flex items-center justify-center mx-auto"
           size="large"
         >
           <Link href="/projects">Lihat Semua</Link>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
