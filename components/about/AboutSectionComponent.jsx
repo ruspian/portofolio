@@ -32,16 +32,6 @@ const AboutSectionComponent = () => {
             memberikan solusi yang modern dan tidak ketinggalan zaman. Jika Anda
             punya ide yang ingin diwujudkan, saya siap membantu!
           </p>
-
-          <h3 className="text-2xl font-bold text-amber-500 mb-2">
-            Punya ide? Mari kita wujudkan bersama
-          </h3>
-          <p className="text-lg text-start text-background">
-            Anda dapat terhubung dengan saya via WhatsApp, Anda juga dapat
-            terhubung dengan saya di LinkedIn untuk jaringan profesional,
-            melihat proyek saya di GitHub, dan melihat sekilas kehidupan saya di
-            Instagram.
-          </p>
         </div>
 
         {/* foto */}

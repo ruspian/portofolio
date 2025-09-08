@@ -1,13 +1,11 @@
-import React from "react";
 import ProjectCardComponent from "@/components/card/ProjectCardComponent";
-import { Button } from "antd";
-import Link from "next/link";
+import React from "react";
 
-const ProjectSectionComponent = () => {
+const ProjectsPage = () => {
   return (
     <div className="mx-auto px-10 py-10 ">
       <h1 className="text-4xl font-bold text-amber-500 text-center">
-        Beberapa Hal Yang Saya Bangun
+        Project Saya
       </h1>
       <div className="border-[1px] border-slate-400 w-20 mx-auto my-2"></div>
 
@@ -22,18 +20,13 @@ const ProjectSectionComponent = () => {
           <ProjectCardComponent />
           <ProjectCardComponent />
           <ProjectCardComponent />
+          <ProjectCardComponent />
+          <ProjectCardComponent />
+          <ProjectCardComponent />
         </div>
-
-        <h3 className="px-4 mt-4">
-          Jelajahi semua proyek menarik saya lainnya di
-          <Link href="/projects" className="text-amber-500">
-            {" "}
-            halaman ini
-          </Link>
-        </h3>
       </div>
     </div>
   );
 };
 
-export default ProjectSectionComponent;
+export default ProjectsPage;

@@ -61,16 +61,11 @@ const HeaderComponent = () => {
           <Link href="/" className="hidden md:block">
             Home
           </Link>
-          <Link href="/kontak" className="hidden md:block">
-            About
-          </Link>
-          <Link href="/about" className="hidden md:block">
-            Skill
-          </Link>
-          <Link href="/about" className="hidden md:block">
+
+          <Link href="/projects" className="hidden md:block">
             Projects
           </Link>
-          <Link href="/about" className="hidden md:block">
+          <Link href="/contact" className="hidden md:block">
             Contact
           </Link>
           <NavMobileComponent />

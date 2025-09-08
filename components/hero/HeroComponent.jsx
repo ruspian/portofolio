@@ -24,8 +24,13 @@ const HeroComponent = () => {
             adalah dengan terlibat langsung, belajar, dan berkarya.
           </p>
 
-          <Button color="gold" variant="outlined" className="mt-4" size="large">
-            <FaFileDownload className="size-4" />
+          <Button
+            color="gold"
+            variant="outlined"
+            className="mt-4 hover:scale-110 transition-all duration-300 ease-in-out"
+            size="large"
+          >
+            <FaFileDownload className="size-4 hover:animate-bounce" />
             <Link href="#">Unduh Resume Saya</Link>
           </Button>
         </section>

@@ -68,7 +68,7 @@ const SkillSectionComponent = () => {
                 backgroundColor: skill.color,
                 color: skill.textColor || "#FFFFFF",
               }}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-md font-medium text-sm md:text-base shadow-md"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-md font-medium text-sm md:text-base shadow-md hover:transform-3d hover:scale-110 transition-all duration-300 ease-in-out"
             >
               <span className="text-xl">{skill.icon}</span>
               <span>{skill.name}</span>
