@@ -3,6 +3,7 @@ import "./globals.css";
 import HeaderComponent from "@/components/header/HeaderComponent";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import FooterComponent from "@/components/footer/FooterComponent";
+import AuthProvider from "@/provider/authProvider";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -25,9 +26,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${lato.className} ${fira.className} antialiased`}>
-        <HeaderComponent />
-        <AntdRegistry>{children}</AntdRegistry>
-        <FooterComponent />
+        <AuthProvider>
+          <HeaderComponent />
+          <AntdRegistry>{children}</AntdRegistry>
+          <FooterComponent />
+        </AuthProvider>
       </body>
     </html>
   );

@@ -118,7 +118,7 @@ const TerminalComponent = () => {
 
           if (line.type === "input") {
             return (
-              <p key={line.key}>
+              <p key={line.key + prompt}>
                 {prompt}
                 {/* Elemen ini menjadi target untuk animasi Typed.js */}
                 <span
@@ -131,7 +131,7 @@ const TerminalComponent = () => {
           if (line.type === "code") {
             return (
               <pre
-                key={line.key}
+                key={line.key + line.texta}
                 className="!bg-transparent text-white p-0 m-0"
               >
                 <code className={`language-${line.language}`}>{line.text}</code>
