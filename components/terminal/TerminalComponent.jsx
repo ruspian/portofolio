@@ -105,7 +105,7 @@ const TerminalComponent = () => {
         ref={terminalBodyRef}
         className="p-5 font-mono text-md sm:text-md text-white overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 "
       >
-        {lines.map((line) => {
+        {lines.map((line, index) => {
           // Menentukan prompt berdasarkan apakah ini perintah pertama atau bukan
           const prompt = line.isInitial ? (
             <span>pian@web ~ % </span>
@@ -118,7 +118,7 @@ const TerminalComponent = () => {
 
           if (line.type === "input") {
             return (
-              <p key={line.key + prompt}>
+              <p key={index}>
                 {prompt}
                 {/* Elemen ini menjadi target untuk animasi Typed.js */}
                 <span
@@ -130,10 +130,7 @@ const TerminalComponent = () => {
           }
           if (line.type === "code") {
             return (
-              <pre
-                key={line.key + line.texta}
-                className="!bg-transparent text-white p-0 m-0"
-              >
+              <pre key={index} className="!bg-transparent text-white p-0 m-0">
                 <code className={`language-${line.language}`}>{line.text}</code>
               </pre>
             );

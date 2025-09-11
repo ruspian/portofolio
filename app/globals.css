@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,43 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* css tiptap */
+/* components/Tiptap.css */
+
+.tiptap-container {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+}
+
+.toolbar button {
+  padding: 4px 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.toolbar button.is-active {
+  background-color: #0d0d0d;
+  color: #fff;
+}
+
+.ProseMirror {
+  padding: 12px;
+  min-height: 200px;
+}
+
+.ProseMirror:focus {
+  outline: none;
 }

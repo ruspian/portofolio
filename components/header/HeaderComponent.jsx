@@ -1,16 +1,17 @@
-// components/HeaderComponent.jsx
-
-"use client"; // <-- Tambahkan ini di baris paling atas
+"use client";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaWhatsapp, FaGithub } from "react-icons/fa";
 import NavMobileComponent from "@/components/humberger/NavMobileComponent";
+import { useSession, signOut } from "next-auth/react";
 
 const HeaderComponent = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { data: session, status } = useSession();
 
   // Fungsi yang akan dijalankan setiap kali event scroll terjadi
   const handleScroll = () => {
@@ -58,16 +59,43 @@ const HeaderComponent = () => {
           <Image src="/logo.png" width={50} height={50} alt="logo image " />
         </div>
         <div className="flex flex-1 gap-5 text-sm items-center justify-end">
-          <Link href="/" className="hidden md:block">
+          <Link
+            href="/"
+            className="hidden md:block hover:scale-110 duration-300 ease-in-out"
+          >
             Home
           </Link>
 
-          <Link href="/projects" className="hidden md:block">
+          <Link
+            href="/projects"
+            className="hidden md:block hover:scale-110 duration-300 ease-in-out"
+          >
             Projects
           </Link>
-          <Link href="/contact" className="hidden md:block">
+          <Link
+            href="/contact"
+            className="hidden md:block hover:scale-110 duration-300 ease-in-out"
+          >
             Contact
           </Link>
+
+          {session && status === "authenticated" && (
+            <>
+              <Link
+                href="/buat-project"
+                className="hidden md:block hover:scale-110 duration-300 ease-in-out"
+              >
+                Tambah
+              </Link>
+
+              <span
+                className="cursor-pointer  hover:text-red-600 px-1 py-1 rounded-sm hidden md:block hover:scale-110 duration-300 ease-in-out"
+                onClick={signOut}
+              >
+                Keluar
+              </span>
+            </>
+          )}
           <NavMobileComponent />
         </div>
       </div>

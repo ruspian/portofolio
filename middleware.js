@@ -1,3 +1,6 @@
+// gunakan runtime agar bisa dijalankan di server
+export const runtime = "nodejs";
+
 import { NextResponse, NextRequest } from "next/server";
 import { auth } from "@/utils/auth";
 
@@ -5,13 +8,13 @@ import { auth } from "@/utils/auth";
 export const middleware = async (req) => {
   const session = await auth();
   const isLogin = !!session?.user;
-  const role = session?.user?.role;
+  const role = session?.user?.roles;
   const { pathname } = req.nextUrl;
 
   // proteksi halaman buat project
   if (pathname.startsWith("/buat-project")) {
     // Jika sudah login tapi bukan admin atau belum login, redirect ke halaman home
-    if (role !== "admin" || !isLogin) {
+    if (role !== "admin" && !isLogin) {
       return NextResponse.redirect(new URL("/", req.url));
     }
   }
