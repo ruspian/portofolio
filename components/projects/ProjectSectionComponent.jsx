@@ -21,8 +21,6 @@ const ProjectSectionComponent = () => {
     fetchProjects();
   }, []);
 
-  console.log("data", data);
-
   return (
     <div className="mx-auto px-10 py-10 ">
       <h1 className="text-4xl font-bold text-amber-500 text-center">
@@ -37,8 +35,8 @@ const ProjectSectionComponent = () => {
           perpaduan antara desain dan teknologi.
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-auto">
-          {data.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mx-auto">
+          {data.length > 0 && data.length <= 3 ? ( // hanya tampilkan 3 proyek
             data.map((project) => (
               <div key={project.id}>
                 <ProjectCardComponent
@@ -52,19 +50,21 @@ const ProjectSectionComponent = () => {
               </div>
             ))
           ) : (
-            <div className="item-center justify-center flex">
-              <h2 className="font-semibold text-xl">Belum ada project</h2>
+            <div className="grid col-span-3 items-center justify-center">
+              <h2 className="font-semibold text-xl">Project Kosong!</h2>
             </div>
           )}
         </div>
 
-        <h3 className="px-4 mt-4">
-          Jelajahi semua proyek menarik saya lainnya di
-          <Link href="/projects" className="text-amber-500">
-            {" "}
-            halaman ini
-          </Link>
-        </h3>
+        {data.length > 0 && (
+          <h3 className="px-4 mt-4">
+            Jelajahi semua proyek menarik saya lainnya di
+            <Link href="/projects" className="text-amber-500">
+              {" "}
+              halaman ini
+            </Link>
+          </h3>
+        )}
       </div>
     </div>
   );

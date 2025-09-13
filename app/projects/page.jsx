@@ -1,7 +1,25 @@
+"use client";
+
 import ProjectCardComponent from "@/components/card/ProjectCardComponent";
-import React from "react";
+import { getProjects } from "@/utils/data";
+import React, { useEffect, useState } from "react";
 
 const ProjectsPage = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const projects = await getProjects();
+        setData(projects);
+      } catch (error) {
+        alert(error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
   return (
     <div className="mx-auto px-10 py-10 ">
       <h1 className="text-4xl font-bold text-amber-500 text-center">
@@ -16,13 +34,25 @@ const ProjectsPage = () => {
           perpaduan antara desain dan teknologi.
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 mx-auto">
-          <ProjectCardComponent />
-          <ProjectCardComponent />
-          <ProjectCardComponent />
-          <ProjectCardComponent />
-          <ProjectCardComponent />
-          <ProjectCardComponent />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mx-auto">
+          {data.length > 0 ? (
+            data.map((project) => (
+              <div key={project.id}>
+                <ProjectCardComponent
+                  title={project.title}
+                  content={project.content}
+                  image={project.image}
+                  githubUrl={project.githubUrl}
+                  webUrl={project.webUrl}
+                  id={project.id}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="grid col-span-3 items-center justify-center">
+              <h2 className="font-semibold text-xl">Project Kosong!</h2>
+            </div>
+          )}
         </div>
       </div>
     </div>
