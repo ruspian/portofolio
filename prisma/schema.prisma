@@ -85,6 +85,8 @@ model Post {
   title        String
   content      Json
   image        String
+  githubUrl    String
+  webUrl       String?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 }

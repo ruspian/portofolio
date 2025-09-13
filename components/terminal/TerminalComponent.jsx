@@ -1,5 +1,3 @@
-// components/Terminal.jsx
-
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -9,85 +7,105 @@ import "highlight.js/styles/atom-one-dark.css";
 
 const TerminalComponent = () => {
   const [lines, setLines] = useState([]);
-
-  const typedRefs = useRef([]);
+  const typedInstancesRef = useRef([]);
+  const typedElementsRef = useRef([]);
   const terminalBodyRef = useRef(null);
+  const timeoutsRef = useRef([]); // simpan semua timeout biar bisa di-clear
 
-  // Mendefinisikan seluruh urutan animasi
   const sequence = [
-    { type: "input", text: "cat aboutme.json", delay: 1200 },
+    { type: "input", text: "cat /my-portfolio/aboutme.json", delay: 1200 },
     {
       type: "code",
       language: "json",
-      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Web Developer",\n    "Design Graphics",\n    "Fullstack Web Developer",\n    "Tech Enthusiast"\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian",\n}`,
+      text: `{\n  "name": "Ruspian Majid",\n  "role": [\n    "Fullstack Web Developer",\n    "Design Graphics",\n    "Tech Enthusiast",\n  ],\n  "location": "Indonesia",\n  "email": "ruspianntb@gmail.com",\n  "github": "https://github.com/ruspian"\n}`,
       delay: 500,
     },
     { type: "input", text: " ", delay: 1000 },
   ];
 
   useEffect(() => {
-    // Fungsi untuk menjalankan urutan animasi secara sekuensial (satu per satu)
+    let isCancelled = false; // untuk menghentikan sequence jika component di-unmount
+
+    // Fungsi untuk menjalankan sequence
     const runSequence = async () => {
-      // Loop melalui setiap item dalam 'sequence'
+      // loop sequence
       for (let i = 0; i < sequence.length; i++) {
         const item = sequence[i];
+        if (isCancelled) return;
 
-        // Tunggu sesuai 'delay' yang ditentukan sebelum menampilkan item berikutnya
-        await new Promise((resolve) => setTimeout(resolve, item.delay));
+        // delay
+        await new Promise((resolve) => {
+          const t = setTimeout(resolve, item.delay);
+          timeoutsRef.current.push(t);
+        });
 
+        // tambahkan item ke state lines
+        setLines((prevLines) => [...prevLines, { ...item, key: i }]);
+
+        // buat typed instance
         if (item.type === "input") {
-          // Tambahkan baris input baru ke state untuk dirender
-          setLines((prevLines) => [...prevLines, { ...item, key: i }]);
-
-          // Tunggu DOM diperbarui, lalu jalankan animasi mengetik
           await new Promise((resolve) => {
-            // timeout untuk memastikan elemen ref sudah siap di DOM
-            setTimeout(() => {
-              const typed = new Typed(typedRefs.current[i], {
+            const t = setTimeout(() => {
+              if (isCancelled) {
+                resolve();
+                return;
+              }
+              const targetElement = typedElementsRef.current[i];
+              if (!targetElement) {
+                resolve();
+                return;
+              }
+
+              const typed = new Typed(targetElement, {
                 strings: [item.text],
                 typeSpeed: 100,
                 showCursor: true,
                 cursorChar: "▋",
                 onComplete: (self) => {
-                  // Hanya hapus kursor jika BUKAN perintah terakhir
                   if (i < sequence.length - 1) {
                     self.cursor.remove();
                   }
-                  resolve(); // Lanjutkan ke item berikutnya dalam urutan
+                  resolve();
                 },
               });
+
+              typedInstancesRef.current.push(typed);
             }, 100);
+            timeoutsRef.current.push(t);
           });
-        } else {
-          // Untuk tipe 'output' atau 'code', langsung tambahkan ke state untuk ditampilkan
-          setLines((prevLines) => [...prevLines, { ...item, key: i }]);
         }
       }
     };
 
+    // jalankan sequence
     runSequence();
 
-    // Fungsi cleanup untuk membersihkan instance Typed.js saat komponen dibongkar
+    // cleanup
     return () => {
-      typedRefs.current.forEach((el) => {
-        if (el && el.typed) {
-          el.typed.destroy();
-        }
+      isCancelled = true;
+
+      // cleanup typed instance
+      typedInstancesRef.current.forEach((typedInstance) => {
+        typedInstance.destroy();
       });
+      typedInstancesRef.current = [];
+
+      // cleanup semua timeout
+      timeoutsRef.current.forEach((t) => clearTimeout(t));
+      timeoutsRef.current = [];
     };
   }, []);
 
+  // scroll ke bawah
   useEffect(() => {
-    // Jalankan syntax highlighting setiap kali ada baris baru
     hljs.highlightAll();
-    // Auto-scroll ke bagian bawah terminal
     if (terminalBodyRef.current) {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [lines]);
 
   return (
-    <div className="w-full min-w-[500px]  min-h-[400px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col">
+    <div className="w-full min-w-[500px] min-h-[400px] rounded-lg bg-[#282c34] shadow-2xl border border-white/10 flex flex-col">
       {/* Terminal Header */}
       <div className="h-7 bg-gray-200 rounded-t-lg flex items-center px-2.5 flex-shrink-0">
         <div className="flex space-x-2">
@@ -103,26 +121,17 @@ const TerminalComponent = () => {
       {/* Terminal Body */}
       <div
         ref={terminalBodyRef}
-        className="p-5 font-mono text-md sm:text-md text-white overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800 "
+        className="p-5 font-mono text-md sm:text-md text-white overflow-y-auto h-full scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"
       >
         {lines.map((line, index) => {
-          // Menentukan prompt berdasarkan apakah ini perintah pertama atau bukan
-          const prompt = line.isInitial ? (
-            <span>pian@web ~ % </span>
-          ) : (
-            <span>
-              pian@web{" "}
-              <span className="text-green-500 font-mono">MyPortofolio</span> %{" "}
-            </span>
-          );
+          let prompt = <span>pian@web ~ % </span>;
 
           if (line.type === "input") {
             return (
-              <p key={index}>
+              <p key={line.key + index}>
                 {prompt}
-                {/* Elemen ini menjadi target untuk animasi Typed.js */}
                 <span
-                  ref={(el) => (typedRefs.current[line.key] = el)}
+                  ref={(el) => (typedElementsRef.current[line.key] = el)}
                   className="font-mono"
                 ></span>
               </p>
@@ -130,13 +139,16 @@ const TerminalComponent = () => {
           }
           if (line.type === "code") {
             return (
-              <pre key={index} className="!bg-transparent text-white p-0 m-0">
+              <pre
+                key={line.key + index}
+                className="!bg-transparent text-white p-0 m-0"
+              >
                 <code className={`language-${line.language}`}>{line.text}</code>
               </pre>
             );
           }
           if (line.type === "output") {
-            return <p key={line.key}>{line.text}</p>;
+            return <p key={line.key + index}>{line.text}</p>;
           }
           return null;
         })}

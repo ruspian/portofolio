@@ -15,13 +15,13 @@ const HeroComponent = () => {
             Saya Ruspian Majid,
           </h3>
           <h3 className="text-2xl md:text-4xl font-bold text-gray-600">
-            seorang web developer yang bergerak atas dasar rasa ingin tahu dan
-            semangat.
+            seorang Web Developer yang melihat kode sebagai seni dan hasilnya
+            sebagai karya.
           </h3>
 
           <p className="text-lg mt-4">
-            Pemahaman sejati lahir dari penerapan, bukan sekadar teori. Caranya
-            adalah dengan terlibat langsung, belajar, dan berkarya.
+            Saya percaya, kemampuan tidak hanya lahir dari teori, melainkan dari
+            praktek, pengalaman, dan karya nyata.
           </p>
 
           <Button
