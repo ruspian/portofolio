@@ -3,14 +3,21 @@ import { Card } from "antd";
 import { EyeOutlined, GithubOutlined, LoginOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
-const ProjectCardComponent = ({ title, content, image, githubUrl, webUrl }) => {
+const ProjectCardComponent = ({
+  title,
+  content,
+  image,
+  githubUrl,
+  webUrl,
+  id,
+}) => {
   return (
     <Card
       style={{ width: 300 }}
       cover={<img alt={title} src={image} />}
       className="hover:scale-110 transition-all duration-300 ease-in-out"
       actions={[
-        <Link href="#">
+        <Link href={`/projects/${id}`}>
           <EyeOutlined key="see" />
         </Link>,
         <Link href={githubUrl}>
