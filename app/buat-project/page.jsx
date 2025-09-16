@@ -100,7 +100,7 @@ const BuatProjectPage = () => {
         // hapus editor, judul dan gambar setelah berhasil
 
         alert(response.statusText);
-        // router.push(`/posts/${data.slug}`);
+        router.push(`/projects`);
       } catch (error) {
         alert("Gagal membuat postingan: " + error.message);
       }

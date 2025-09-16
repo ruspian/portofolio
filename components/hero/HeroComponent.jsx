@@ -31,7 +31,9 @@ const HeroComponent = () => {
             size="large"
           >
             <FaFileDownload className="size-4 hover:animate-bounce" />
-            <Link href="#">Unduh Resume Saya</Link>
+            <a href="/cvsaya.pdf" download>
+              Unduh CV Saya
+            </a>
           </Button>
         </section>
 

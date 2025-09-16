@@ -1,24 +1,33 @@
 "use client";
 
 import ProjectCardComponent from "@/components/card/ProjectCardComponent";
+import SkeletonProjectComponent from "@/components/skeleton/SkeletonProjectComponent";
 import { getProjects } from "@/utils/data";
 import React, { useEffect, useState } from "react";
 
 const ProjectsPage = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
+        setLoading(true);
         const projects = await getProjects();
         setData(projects);
       } catch (error) {
         alert(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProjects();
   }, []);
+
+  if (loading) {
+    return <SkeletonProjectComponent />;
+  }
 
   return (
     <div className="mx-auto px-10 py-10 ">

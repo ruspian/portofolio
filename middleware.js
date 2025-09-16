@@ -12,16 +12,16 @@ export const middleware = async (req) => {
   const { pathname } = req.nextUrl;
 
   // proteksi halaman buat project
+  // Jika sudah login tapi bukan admin atau belum login, redirect ke halaman home
   if (pathname.startsWith("/buat-project")) {
-    // Jika sudah login tapi bukan admin atau belum login, redirect ke halaman home
     if (role !== "admin" && !isLogin) {
       return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
   // proteksi halaman masuk
+  // Jika sudah login, tidak boleh mengakses halaman signin
   if (isLogin && pathname.startsWith("/masuk")) {
-    // Jika sudah login, tidak boleh mengakses halaman signin
     return NextResponse.redirect(new URL("/", req.url));
   }
 

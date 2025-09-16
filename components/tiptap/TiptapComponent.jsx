@@ -16,6 +16,10 @@ import { LuHeading1, LuHeading2, LuHeading3 } from "react-icons/lu";
 import { TbBlockquote } from "react-icons/tb";
 import { RiListOrdered2, RiParagraph } from "react-icons/ri";
 import { IoImage } from "react-icons/io5";
+import imageCompression from "browser-image-compression";
+import { supabase } from "@/utils/supabase";
+
+const BUCKET_NAME_SUPABASE = "portfolio";
 
 // --- Komponen Tombol Toolbar ---
 export const ToolbarButton = ({

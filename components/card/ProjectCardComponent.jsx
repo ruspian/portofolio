@@ -28,9 +28,9 @@ const ProjectCardComponent = ({
         </Link>,
       ]}
     >
-      <h2 className="text-start font-bold text-md">{title}</h2>
+      <h2 className="text-start font-bold text-md line-clamp-2">{title}</h2>
       <p
-        className="text-start line-clamp-1"
+        className="text-start line-clamp-1 overflow-hidden"
         dangerouslySetInnerHTML={{ __html: content.html }}
       ></p>
     </Card>

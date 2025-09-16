@@ -36,8 +36,9 @@ const ProjectSectionComponent = () => {
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mx-auto">
-          {data.length > 0 && data.length <= 3 ? ( // hanya tampilkan 3 proyek
-            data.map((project) => (
+          {data.length > 0 ? (
+            // hanya tampilkan 3 proyek
+            data.slice(0, 3).map((project) => (
               <div key={project.id}>
                 <ProjectCardComponent
                   title={project.title}
