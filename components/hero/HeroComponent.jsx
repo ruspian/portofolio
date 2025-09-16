@@ -1,7 +1,6 @@
 import React from "react";
 import TerminalComponent from "../terminal/TerminalComponent";
 import { Button } from "antd";
-import Link from "next/link";
 import { FaFileDownload } from "react-icons/fa";
 
 const HeroComponent = () => {

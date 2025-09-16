@@ -2,6 +2,12 @@ import React from "react";
 import Link from "next/link";
 import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
+export const metadata = {
+  title: "Contact",
+  description:
+    "Anda dapat terhubung dengan saya via WhatsApp, Anda juga dapat terhubung dengan saya di LinkedIn proyek saya di GitHub, dan melihat sekilas kehidupan saya di Instagram.",
+};
+
 const ContactPage = () => {
   return (
     <div className="mx-auto px-10 py-10 bg-foreground">
