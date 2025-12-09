@@ -1,35 +1,22 @@
-// gunakan runtime agar bisa dijalankan di server
-export const runtime = "nodejs";
+import { NextResponse } from "next/server";
 
-import { NextResponse, NextRequest } from "next/server";
-import { auth } from "@/utils/auth";
+export function middleware(req) {
+  const token = req.cookies.get("auth-token")?.value;
+  const pathname = req.nextUrl.pathname;
 
-// middleware
-export const middleware = async (req) => {
-  const session = await auth();
-  const isLogin = !!session?.user;
-  const role = session?.user?.roles;
-  const { pathname } = req.nextUrl;
-
-  // proteksi halaman buat project
-  // Jika sudah login tapi bukan admin atau belum login, redirect ke halaman home
-  if (pathname.startsWith("/buat-project")) {
-    if (role !== "admin" && !isLogin) {
-      return NextResponse.redirect(new URL("/", req.url));
-    }
-  }
-
-  // proteksi halaman masuk
-  // Jika sudah login, tidak boleh mengakses halaman signin
-  if (isLogin && pathname.startsWith("/masuk")) {
+  // belum login → redirect buat project
+  if (!token && pathname.startsWith("/buat-project")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // lanjut
-  return NextResponse.next();
-};
+  // sudah login → blok halaman masuk
+  if (token && pathname.startsWith("/masuk")) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
 
-// jalankan middleware di path ini
+  return NextResponse.next();
+}
+
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

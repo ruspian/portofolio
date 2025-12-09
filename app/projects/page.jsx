@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import ProjectComponent from "@/components/projects/ProjectComponent";
 
 export const metadata = {
