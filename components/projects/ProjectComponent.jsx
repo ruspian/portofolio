@@ -14,7 +14,7 @@ const ProjectComponent = () => {
       try {
         setLoading(true);
         const projects = await getProjects();
-        setData(projects.data);
+        setData(projects);
       } catch (error) {
         alert(error);
       } finally {
@@ -24,6 +24,8 @@ const ProjectComponent = () => {
 
     fetchProjects();
   }, []);
+
+  console.log("data", data);
 
   if (loading) {
     return <SkeletonProjectComponent />;
