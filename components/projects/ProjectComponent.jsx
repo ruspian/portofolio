@@ -14,7 +14,7 @@ const ProjectComponent = () => {
       try {
         setLoading(true);
         const projects = await getProjects();
-        setData(projects);
+        setData(projects.data);
       } catch (error) {
         alert(error);
       } finally {
@@ -30,8 +30,8 @@ const ProjectComponent = () => {
   }
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mx-auto">
-      {data.length > 0 ? (
-        data.map((project) => (
+      {data?.length > 0 ? (
+        data?.map((project) => (
           <div key={project.id}>
             <ProjectCardComponent
               title={project.title}
