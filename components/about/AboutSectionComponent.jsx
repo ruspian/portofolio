@@ -36,7 +36,13 @@ const AboutSectionComponent = () => {
 
         {/* foto */}
         <div className="flex flex-col items-center justify-center md:w-1/3 mt-10 gap-4">
-          <Image src="/foto1.png" width={250} height={300} alt="foto ruspian" />
+          <Image
+            src="/foto1.png"
+            width={250}
+            height={300}
+            alt="foto ruspian"
+            unoptimized
+          />
 
           <div className="flex flex-row gap-6 items-center justify-center">
             <Link
